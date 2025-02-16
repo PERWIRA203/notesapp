@@ -132,7 +132,10 @@ class NotesComponent extends HTMLElement {
         const container = this.shadowRoot.querySelector(".container");
         loadingIndicator.style.display = "block";
         try {
-            const response = await fetch("https://notes-api.dicoding.dev/v2/notes");
+            const response = await fetch("https://notes-api.dicoding.dev/v2/notes", {
+                method: "GET", 
+                headers: { "Accept": "application/json" } 
+            });
             const { data } = await response.json();
             this.renderNotes(data);
         } catch (error) {
